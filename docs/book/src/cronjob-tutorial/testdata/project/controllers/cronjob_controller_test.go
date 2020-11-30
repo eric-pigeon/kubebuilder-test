@@ -175,6 +175,7 @@ var _ = Describe("CronJob controller", func() {
 			// Note that your CronJob’s GroupVersionKind is required to set up this owner reference.
 			kind := reflect.TypeOf(cronjobv1.CronJob{}).Name()
 			gvk := cronjobv1.GroupVersion.WithKind(kind)
+			time.Sleep(10 * time.Second)
 
 			controllerRef := metav1.NewControllerRef(createdCronjob, gvk)
 			testJob.SetOwnerReferences([]metav1.OwnerReference{*controllerRef})

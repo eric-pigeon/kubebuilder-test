@@ -89,6 +89,7 @@ var (
 func (r *CronJobReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 	ctx := context.Background()
 	log := r.Log.WithValues("cronjob", req.NamespacedName)
+	fmt.Print("RECONCILE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
 	/*
 		### 1: Load the CronJob by name
@@ -248,10 +249,10 @@ func (r *CronJobReconciler) Reconcile(req ctrl.Request) (ctrl.Result, error) {
 		The status subresource ignores changes to spec, so it's less likely to conflict
 		with any other updates, and can have separate permissions.
 	*/
-	if err := r.Status().Update(ctx, &cronJob); err != nil {
-		log.Error(err, "unable to update CronJob status")
-		return ctrl.Result{}, err
-	}
+	//if err := r.Status().Update(ctx, &cronJob); err != nil {
+	//	log.Error(err, "unable to update CronJob status")
+	//	return ctrl.Result{}, err
+	//}
 
 	/*
 		Once we've updated our status, we can move on to ensuring that the status of
